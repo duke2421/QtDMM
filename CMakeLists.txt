@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.11)
 project(qtdmm VERSION "0.0.0" HOMEPAGE_URL "https://github.com/tuxmaster/QtDMM/" LANGUAGES CXX)
 
 ## main settings
+set(QTDMM_BASE_VERSION "1.0.0-alpha.2")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)

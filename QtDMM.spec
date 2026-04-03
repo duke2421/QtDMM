@@ -1,5 +1,5 @@
 Name:           qtdmm
-Version:        1.0.0-alpha.1-12-gd0ba312+d0ba312
+Version:        1.0.0-alpha.2+5021873
 Release:        1%{?dist}
 Summary:        DMM Readout Software Including a Configurable Recorder.
 
@@ -48,6 +48,12 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/qtdmm.desktop
 %{_datadir}/icons/hicolor/*/apps/qtdmm.png
 
 %changelog
+
+* 02/04/2026 1.0.0-alpha.2
+- Delay the Linux serial permission warning until access to the configured device actually fails
+- Suggest the real device group, or a distro-appropriate fallback such as `uucp` on Arch-based systems, instead of always recommending `dialout`
+- Preserve engineering prefixes and precision when exporting recorded values
+- Fix re-import/export round-trips so units like `pF` do not become duplicated as `ppF`
 
 * xx/xx/2025 1.0.0
 - Switch Qt6 (redpanther)
@@ -257,5 +263,4 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/qtdmm.desktop
 -- 24/04/2005
    Matthias Toussaint
    <qtdmm@mtoussaint.de>
-
 

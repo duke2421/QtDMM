@@ -1,4 +1,10 @@
 
+* 02/04/2026 1.0.0-alpha.2
+- Delay the Linux serial permission warning until access to the configured device actually fails
+- Suggest the real device group, or a distro-appropriate fallback such as `uucp` on Arch-based systems, instead of always recommending `dialout`
+- Preserve engineering prefixes and precision when exporting recorded values
+- Fix re-import/export round-trips so units like `pF` do not become duplicated as `ppF`
+
 * xx/xx/2025 1.0.0
 - Switch Qt6 (redpanther)
 - Switch to cmake build system
@@ -207,4 +213,3 @@
 -- 24/04/2005
    Matthias Toussaint
    <qtdmm@mtoussaint.de>
-

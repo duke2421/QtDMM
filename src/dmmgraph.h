@@ -217,6 +217,8 @@ protected:
   double           createYScale(int h, double &ystep);
   double           createTimeScale(int w, double &xstep, double &hUnitFact, double &maxUnit, QString &hUnit);
   void             emitInfo();
+  QString          formatEngineeringValue(double value, QString *unit = Q_NULLPTR) const;
+  double           unitScaleFactor(const QString &unit) const;
   void             paint(QPainter *p, int w, int h, double xfactor, double xstep, double yfactor, double ystep,
                          double maxUnit, double hUnitFact, const QString &hUnit, bool color, bool printer);
   void             paintHorizontalGrid(QPainter *p, double yfactor, double ystep, bool color);
@@ -235,4 +237,3 @@ private:
   Settings        *m_cfg;
 
 };
-

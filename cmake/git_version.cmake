@@ -1,32 +1,25 @@
 # get version
 function(get_version_from_git)
 	find_package(Git QUIET)
-	if(NOT Git_FOUND)
-		message(WARNING "Git not found")
-		return()
+	set(CLEAN_TAG "${QTDMM_BASE_VERSION}")
+	set(GIT_COMMIT_SHORT_HASH "unknown")
+
+	if(Git_FOUND)
+		execute_process(
+			COMMAND ${GIT_EXECUTABLE} rev-parse --short=7 HEAD
+			WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+			OUTPUT_VARIABLE GIT_COMMIT_SHORT_HASH
+			OUTPUT_STRIP_TRAILING_WHITESPACE
+			RESULT_VARIABLE GIT_RESULT
+		)
+
+		if(NOT GIT_RESULT EQUAL 0)
+			set(GIT_COMMIT_SHORT_HASH "unknown")
+		endif()
+	else()
+		message(WARNING "Git not found, using base version without commit hash")
 	endif()
 
-	execute_process(
-		COMMAND ${GIT_EXECUTABLE} describe --tags --always
-		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-		OUTPUT_VARIABLE GIT_TAG
-		OUTPUT_STRIP_TRAILING_WHITESPACE
-		RESULT_VARIABLE GIT_RESULT
-	)
-
-	if(NOT GIT_RESULT EQUAL 0)
-		message(WARNING "Failed to get git tag")
-		return()
-	endif()
-
-	execute_process(
-		COMMAND ${GIT_EXECUTABLE} rev-parse --short=7 HEAD
-		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-		OUTPUT_VARIABLE GIT_COMMIT_SHORT_HASH
-		OUTPUT_STRIP_TRAILING_WHITESPACE
-	)
-
-	string(REGEX REPLACE "^v" "" CLEAN_TAG "${GIT_TAG}")
 	if(CLEAN_TAG MATCHES "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(-.*)?$")
 
 		set(PROJECT_VERSION_MAJOR ${CMAKE_MATCH_1})

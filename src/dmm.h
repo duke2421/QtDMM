@@ -82,6 +82,6 @@ protected:
 
 protected Q_SLOTS:
   void readEventSLOT(const QByteArray &str, int id);
+  QString permissionHint() const;
 
 };
-

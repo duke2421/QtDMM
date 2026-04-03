@@ -1,6 +1,6 @@
 # Maintainer: Dein Name <deine@email.tld>
 pkgname=qtdmm
-pkgver=1.0.0.alpha.1
+pkgver=1.0.0.alpha.2
 pkgrel=1
 pkgdesc="A DMM readout software including a configurable recorder "
 arch=('x86_64')
